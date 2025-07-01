@@ -8,7 +8,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return "Application is fully running!";
+        return "Application is CHANGED ALL GOOF fully running!";
     }
 
     @GetMapping("/test")
