@@ -37,7 +37,7 @@ build/
 *.swp
 *.swo
 
-# Ignore all .terraform directories globally
 .terraform/
-
-
+*.tfstate
+*.tfstate.backup
+*.tfvars
