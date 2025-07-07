@@ -36,3 +36,8 @@ build/
 # Editor swap files
 *.swp
 *.swo
+
+# Ignore all .terraform directories globally
+.terraform/
+
+
