@@ -20,3 +20,19 @@ resource "aws_s3_object" "jar_upload" {
   content_type = "application/java-archive"
 }
 
+resource "aws_s3_bucket" "app_config_bucket" {
+  bucket = var.config_bucket_name
+  force_destroy = true
+
+  tags = {
+    Name        = "PatientCareConfigBucket"
+    Environment = "Dev"
+  }
+}
+
+resource "aws_s3_object" "app_properties" {
+  bucket       = aws_s3_bucket.app_config_bucket.id
+  key          = "application.properties"
+  source       = "C:\\Users\\khaja\\external-config\\application.properties"  # Adjust path accordingly
+  content_type = "text/plain"
+}

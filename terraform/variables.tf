@@ -42,3 +42,14 @@ variable "key_name" {
   description = "SSH key name"
   type        = string
 }
+
+
+variable "config_bucket_name" {
+  description = "S3 bucket name for storing application config files"
+  type        = string
+}
+
+variable "s3_config_key" {
+  description = "The desired object key name in the S3 bucket"
+  type        = string
+}

@@ -20,25 +20,26 @@ resource "aws_iam_instance_profile" "ec2_instance_profile" {
   role = aws_iam_role.ec2_s3_access_role.name
 }
 
-resource "aws_iam_policy" "s3_get_object_policy" {
-  name        = "s3-get-object-policy"
-  description = "Allow EC2 to download objects from a specific S3 bucket"
+# ✅ S3 Full Access Policy
+resource "aws_iam_policy" "s3_full_access_policy" {
+  name        = "ec2-s3-full-access-policy"
+  description = "Allow EC2 to access all S3 resources"
 
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
         Effect = "Allow",
-        Action = [
-          "s3:GetObject"
-        ],
-        Resource = "arn:aws:s3:::${var.bucket_name}/*"
+        Action = "s3:*",
+        Resource = "*"
       }
     ]
   })
 }
 
-resource "aws_iam_role_policy_attachment" "attach_custom_s3_policy" {
+# ✅ Attach Full S3 Access Policy to Role
+resource "aws_iam_role_policy_attachment" "attach_s3_full_access_policy" {
   role       = aws_iam_role.ec2_s3_access_role.name
-  policy_arn = aws_iam_policy.s3_get_object_policy.arn
+  policy_arn = aws_iam_policy.s3_full_access_policy.arn
 }
+
